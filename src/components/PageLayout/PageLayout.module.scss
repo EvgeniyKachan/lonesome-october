@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Firlest";
+  src: url("../../assets/fonts/Firlest-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  background-image: url("/image/background.jpg");
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  font-family: "Firlest", serif;
+}
+
+@media (min-width: 1025px) {
+  .layout {
+    margin: 0 auto;
+    max-width: 1025px;
+    overflow-y: auto;
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media (max-width: 767px) {
+}
