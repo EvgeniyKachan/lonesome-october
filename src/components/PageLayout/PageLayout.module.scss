@@ -8,7 +8,7 @@
 body {
   margin: 0;
   background-image: url("/image/background.jpg");
-  background-color: black;
+  background-color: rgb(144, 152, 143);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -18,10 +18,13 @@ body {
 
 @media (min-width: 1025px) {
   .layout {
-    margin: 0 auto;
-    max-width: 1025px;
     overflow-y: auto;
+    margin: 0 auto;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
     font-size: 20px;
+    height: 100vh;
   }
 }
 

@@ -1,5 +1,8 @@
 .main {
   display: flex;
   flex-direction: column;
-  background-color: burlywood;
+  width: 100%;
+  div {
+    margin: 0 auto;
+  }
 }

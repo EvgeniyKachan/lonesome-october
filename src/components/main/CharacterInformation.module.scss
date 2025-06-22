@@ -1,0 +1,43 @@
+.information_card_wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  max-width: 1024px;
+
+  .information_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f0f0f0; // светло-серый фон для карточки
+    border-radius: 10px; // скруглённые углы
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // лёгкая тень для глубины
+    max-width: 400px;
+    max-height: 400px;
+
+    .framed_image {
+      display: inline-block;
+      padding: 12px; // "внутреннее" пространство рамки
+      background-color: #b8860b; // бронзово-золотой, как старая рама
+
+      border-radius: 8px;
+      img {
+        display: block;
+        max-width: 100%;
+        height: 300px;
+        width: 300px;
+        border: 4px solid #1c1c1c; // чёрная глубокая рамка вокруг
+        box-shadow: 0 0 10px #4b0082,
+          // фиолетовое свечение — мистика
+          0 0 20px #ff7518 inset; // тыквенно-оранжевая подсветка внутри
+        border-radius: 8px;
+      }
+    }
+  }
+}
