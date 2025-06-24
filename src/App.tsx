@@ -4,7 +4,7 @@ import Character from "./components/characters/Character";
 import AddCharacter from "./components/characters/AddCharacter";
 import EditCharacter from "./components/characters/EditCharacter";
 import Login from "./components/authorization/Login";
-import Home from "./components/main/Home";
+import Home from "./components/screens/Home/Home";
 import { PageLayout } from "./components/PageLayout/PageLayout";
 
 function App() {
