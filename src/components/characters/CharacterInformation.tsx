@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import classes from "./CharacterInformation.module.scss";
 import type { Character } from "./types";
 
@@ -40,6 +41,9 @@ export default function CharacterInformation({
           </ul>
         </div>
       )}
+      <Link to={`/character/${character.id}`}>
+        <button>Подробнее о {character.name}</button>
+      </Link>
     </div>
   );
 }

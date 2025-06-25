@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import Header from "./components/header/Header";
-import Character from "./components/characters/Character";
+import Character from "./components/screens/Character/Character";
 import AddCharacter from "./components/characters/AddCharacter";
 import EditCharacter from "./components/characters/EditCharacter";
 import Login from "./components/authorization/Login";
@@ -15,7 +15,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="auth" element={<Login />} />
         <Route path="character">
-          <Route path=":userId" element={<Character />} />
+          <Route path=":characterId" element={<Character />} />
           <Route path="add-character" element={<AddCharacter />} />
           <Route path="edit-character" element={<EditCharacter />} />
         </Route>

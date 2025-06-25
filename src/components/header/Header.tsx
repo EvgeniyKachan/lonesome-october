@@ -20,12 +20,6 @@ export default function Header() {
           Add Character
         </NavLink>
         <NavLink
-          to="/character/:userId"
-          className={({ isActive }) => (isActive ? classes.active : undefined)}
-        >
-          Character details
-        </NavLink>
-        <NavLink
           to="/login"
           className={({ isActive }) => (isActive ? classes.active : undefined)}
         >
