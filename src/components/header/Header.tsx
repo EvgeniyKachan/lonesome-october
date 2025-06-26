@@ -13,17 +13,10 @@ export default function Header() {
           Home
         </NavLink>
         <NavLink
-          to="/character/add-character"
-          end
-          className={({ isActive }) => (isActive ? classes.active : undefined)}
-        >
-          Add Character
-        </NavLink>
-        <NavLink
           to="/login"
           className={({ isActive }) => (isActive ? classes.active : undefined)}
         >
-          Authorization
+          Login
         </NavLink>
       </nav>
     </header>

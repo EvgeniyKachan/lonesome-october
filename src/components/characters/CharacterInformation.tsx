@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import classes from "./CharacterInformation.module.scss";
 import type { Character } from "./types";
+import Card from "../shared/Card/Card";
 
 type CharacterInformationProps = {
   character: Character;
@@ -10,7 +11,7 @@ export default function CharacterInformation({
   character,
 }: CharacterInformationProps) {
   return (
-    <div className={classes.information_card_wrapper}>
+    <Card>
       <div className={classes.information_card}>
         <div className={classes.framed_image}>
           <img src={character.image} alt={character.name} />
@@ -44,6 +45,6 @@ export default function CharacterInformation({
       <Link to={`/character/${character.id}`}>
         <button>Подробнее о {character.name}</button>
       </Link>
-    </div>
+    </Card>
   );
 }

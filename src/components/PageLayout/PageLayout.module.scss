@@ -5,6 +5,26 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "GreatVictorian Standard";
+  src: url("/src/assets/fonts/greatvictorian/GreatVictorian-Standard.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "GreatVictorian Swashed";
+  src: url("/src/assets/fonts/greatvictorian/GreatVictorian-Swashed.otf")
+    format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GreatVictorian SwashedSC";
+  src: url("/src/assets/fonts/greatvictorian/GreatVictorian-SwashedSC.otf")
+    format("opentype");
+}
+
 body {
   margin: 0;
   background-image: url("/image/background.jpg");

@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router";
 import Header from "./components/header/Header";
-import Character from "./components/screens/Character/Character";
+import Character from "./screens/Character/Character";
 import AddCharacter from "./components/characters/AddCharacter";
 import EditCharacter from "./components/characters/EditCharacter";
-import Login from "./components/authorization/Login";
-import Home from "./components/screens/Home/Home";
+import Authorization from "./components/authorization/Authorization";
+import Home from "./screens/Home/Home";
 import { PageLayout } from "./components/PageLayout/PageLayout";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route index element={<Home />} />
-        <Route path="auth" element={<Login />} />
+        <Route path="login" element={<Authorization />} />
         <Route path="character">
           <Route path=":characterId" element={<Character />} />
           <Route path="add-character" element={<AddCharacter />} />

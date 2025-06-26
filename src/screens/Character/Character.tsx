@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
-import { useCharacterDetails } from "../../../requests/useCharacterDetails";
+import { useCharacterDetails } from "../../requests/useCharacterDetails";
 
-import CharacterInformation from "../../characters/CharacterInformation";
+import CharacterInformation from "../../components/characters/CharacterInformation";
 
 export default function Character() {
   const characterId = useParams<{ characterId: string }>().characterId;
