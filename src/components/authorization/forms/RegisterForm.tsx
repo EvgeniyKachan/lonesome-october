@@ -1,4 +1,4 @@
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -16,7 +16,21 @@ const schema = yup
 
 type FormData = yup.InferType<typeof schema>;
 
-export default function RegisterForm() {
+type RegisterFormProps = {
+  onSubmit: (data: {
+    email: string;
+    password: string;
+    username: string;
+  }) => void;
+  isLoading: boolean;
+  error: Error | null;
+};
+
+export default function RegisterForm({
+  onSubmit,
+  isLoading,
+  error,
+}: RegisterFormProps) {
   const {
     register,
     handleSubmit,
@@ -24,10 +38,6 @@ export default function RegisterForm() {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-
-  const onSubmit: SubmitHandler<FormData> = (data): void => {
-    console.log(data);
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -53,13 +63,16 @@ export default function RegisterForm() {
         label="You Password"
         name="password"
         register={register}
-        autocomplete="password"
+        type="password"
         className={classes.input}
         placeholder="Password"
       />
       <p>{errors.password?.message}</p>
 
-      <Button type="submit"> Sign up</Button>
+      <Button type="submit" disabled={isLoading}>
+        Sign up
+      </Button>
+      {error && <p style={{ color: "red" }}>{error.message}</p>}
     </form>
   );
 }

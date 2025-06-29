@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useCharacterDetails } from "../../requests/useCharacterDetails";
+import { useCharacterDetails } from "../../hooks/useCharacterDetails";
 
 import CharacterInformation from "../../components/characters/CharacterInformation";
 

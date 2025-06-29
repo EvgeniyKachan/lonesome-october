@@ -5,14 +5,51 @@ import classes from "./Authorization.module.scss";
 import { useState } from "react";
 import LoginForm from "./forms/LoginForm";
 import Button from "../shared/Button/Button";
+import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 export default function Authorization() {
   const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
+  const {
+    login,
+    register,
+    isLoginLoading,
+    isRegisterLoading,
+    loginError,
+    registerError,
+  } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = async (data: { email: string; password: string }) => {
+    await login(data);
+    navigate("/", { replace: true });
+  };
+
+  const handleRegister = async (data: {
+    email: string;
+    username: string;
+    password: string;
+  }) => {
+    await register(data);
+    navigate("/", { replace: true });
+  };
 
   return (
     <div className={classes.login_wrapper}>
       <Card className={classes.login_card}>
-        {isLoginForm ? <LoginForm /> : <RegisterForm />}
+        {isLoginForm ? (
+          <LoginForm
+            onSubmit={handleLogin}
+            isLoading={isLoginLoading}
+            error={loginError}
+          />
+        ) : (
+          <RegisterForm
+            onSubmit={handleRegister}
+            isLoading={isRegisterLoading}
+            error={registerError}
+          />
+        )}
         <Button
           className={classes.toggle_button}
           onClick={() => setIsLoginForm((prev) => !prev)}

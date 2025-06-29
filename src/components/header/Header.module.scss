@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .header {
   padding: 10px;
   margin-bottom: 20px;
@@ -8,8 +10,8 @@
     justify-content: space-evenly;
 
     a {
-      text-decoration: none;
       color: #ff7518;
+      text-decoration: none;
     }
 
     a.active {
@@ -19,6 +21,19 @@
     a:hover {
       color: #ff7518;
       text-decoration: underline;
+    }
+
+    .logout_button {
+      button: {
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 5px 10px;
+        background-color: #ff7518;
+      }
+      &:hover {
+        background-color: color.adjust(#ff7518, $lightness: -10%);
+      }
     }
   }
 }

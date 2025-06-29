@@ -1,4 +1,4 @@
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "../../shared/Input/Input";
@@ -14,7 +14,17 @@ const schema = yup
 
 type FormData = yup.InferType<typeof schema>;
 
-export default function LoginForm() {
+type LoginFormProps = {
+  onSubmit: (data: { email: string; password: string }) => void;
+  isLoading: boolean;
+  error: Error | null;
+};
+
+export default function LoginForm({
+  onSubmit,
+  isLoading,
+  error,
+}: LoginFormProps) {
   const {
     register,
     handleSubmit,
@@ -22,10 +32,6 @@ export default function LoginForm() {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-
-  const onSubmit: SubmitHandler<FormData> = (data): void => {
-    console.log(data);
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -42,14 +48,17 @@ export default function LoginForm() {
       <Input
         label="You Password"
         name="password"
+        type="password"
         register={register}
-        autocomplete="password"
         className={classes.input}
         placeholder="Password"
       />
       <p>{errors.password?.message}</p>
 
-      <Button type="submit">Login</Button>
+      <Button type="submit" disabled={isLoading}>
+        {isLoading ? "Loading…" : "Log In"}
+      </Button>
+      {error && <p style={{ color: "red" }}>{error.message}</p>}
     </form>
   );
 }
