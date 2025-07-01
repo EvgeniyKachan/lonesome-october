@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router";
 import Header from "./components/header/Header";
 import Character from "./screens/Character/Character";
-import AddCharacter from "./components/characters/AddCharacter";
+import AddCharacter from "./screens/AddCharacter/AddCharacter";
 import EditCharacter from "./components/characters/EditCharacter";
-import Authorization from "./components/authorization/Authorization";
+import Authorization from "./screens/Authorization/Authorization.tsx";
 import Home from "./screens/Home/Home";
 import { PageLayout } from "./components/PageLayout/PageLayout";
 import { useAuth } from "./hooks/useAuth.ts";

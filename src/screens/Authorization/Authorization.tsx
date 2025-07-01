@@ -1,10 +1,10 @@
-import Card from "../shared/Card/Card";
+import Card from "../../components/shared/Card/Card";
 import RegisterForm from "./forms/RegisterForm";
 
 import classes from "./Authorization.module.scss";
 import { useState } from "react";
 import LoginForm from "./forms/LoginForm";
-import Button from "../shared/Button/Button";
+import Button from "../../components/shared/Button/Button";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router";
 

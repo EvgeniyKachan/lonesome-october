@@ -1,14 +1,12 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import Input from "../../../components/shared/Input/Input";
 import classes from "../Authorization.module.scss";
-import Input from "../../shared/Input/Input";
-import Button from "../../shared/Button/Button";
+import Button from "../../../components/shared/Button/Button";
 
 const schema = yup
   .object({
-    username: yup.string().min(3).max(20).required(),
     email: yup.string().email().required(),
     password: yup.string().min(6).required(),
   })
@@ -16,21 +14,17 @@ const schema = yup
 
 type FormData = yup.InferType<typeof schema>;
 
-type RegisterFormProps = {
-  onSubmit: (data: {
-    email: string;
-    password: string;
-    username: string;
-  }) => void;
+type LoginFormProps = {
+  onSubmit: (data: FormData) => void;
   isLoading: boolean;
   error: Error | null;
 };
 
-export default function RegisterForm({
+export default function LoginForm({
   onSubmit,
   isLoading,
   error,
-}: RegisterFormProps) {
+}: LoginFormProps) {
   const {
     register,
     handleSubmit,
@@ -41,14 +35,6 @@ export default function RegisterForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        label="You Username"
-        name="username"
-        register={register}
-        className={classes.input}
-        placeholder="Username"
-      />
-      <p>{errors.username?.message}</p>
       <Input
         label="You Email"
         name="email"
@@ -62,15 +48,15 @@ export default function RegisterForm({
       <Input
         label="You Password"
         name="password"
-        register={register}
         type="password"
+        register={register}
         className={classes.input}
         placeholder="Password"
       />
       <p>{errors.password?.message}</p>
 
       <Button type="submit" disabled={isLoading}>
-        Sign up
+        {isLoading ? "Loading…" : "Log In"}
       </Button>
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </form>
