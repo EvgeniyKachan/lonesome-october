@@ -28,12 +28,14 @@ const Input = <T extends FieldValues>({
   ...props
 }: InputProps<T>) => (
   <div className={classes.input_wrapper}>
-    <label htmlFor={name}>{label}</label>
+    <label htmlFor={name} className={classes.label}>
+      {label}
+    </label>
     <input
       id={name}
       {...register(name, { required })}
       autoComplete={autocomplete}
-      className={className}
+      className={`${classes.input} ${className ? className : ""}`}
       {...props}
     />
     {error && <p className={classes.error}>{error.message}</p>}

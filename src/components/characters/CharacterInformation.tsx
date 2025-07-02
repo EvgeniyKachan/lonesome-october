@@ -16,12 +16,18 @@ export default function CharacterInformation({
       <div className={classes.information_card_wrapper}>
         <div className={classes.information_card}>
           <div className={classes.framed_image}>
-            <img src={character.image} alt={character.name} />
+            <img
+              src={
+                character.characterImage
+                  ? character.characterImage
+                  : "/src/assets/images/Jack.jpg"
+              }
+              alt={character.characterName}
+            />
           </div>
           <ul>
-            <li>Name: {character.name}</li>
-            <li>Role: {character.role}</li>
-            <li>Description: {character.description}</li>
+            <li>Name: {character.characterName}</li>
+            <li>Role: {character.characterRole}</li>
           </ul>
         </div>
 
@@ -30,23 +36,22 @@ export default function CharacterInformation({
             <div className={classes.framed_image}>
               <img
                 src={
-                  character.familiar.image
-                    ? character.familiar.image
+                  character.familiar.familiarImage
+                    ? character.familiar.familiarImage
                     : "/src/assets/images/Jack.jpg"
                 }
-                alt={character.familiar.name}
+                alt={character.familiar.familiarName}
               />
             </div>
             <ul>
-              <li>Familiar: {character.familiar.name}</li>
-              <li>Species: {character.familiar.species}</li>
-              <li>Description: {character.familiar.description}</li>
+              <li>Familiar: {character.familiar.familiarName}</li>
+              <li>Species: {character.familiar.familiarSpecies}</li>
             </ul>
           </div>
         )}
       </div>
       <Link to={`/character/${character.id}`}>
-        <Button type="button">Details about {character.name}</Button>
+        <Button type="button">Details about {character.characterName}</Button>
       </Link>
     </Card>
   );

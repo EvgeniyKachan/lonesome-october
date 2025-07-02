@@ -1,13 +1,13 @@
 export type Character = {
   id: string;
-  name: string;
-  role: string;
-  description: string;
-  image?: string;
+  characterName: string;
+  characterRole: string;
+  characterDescription: string;
+  characterImage?: string;
   familiar?: {
-    name: string;
-    species: string;
-    description: string;
-    image?: string;
+    familiarName: string;
+    familiarSpecies: string;
+    familiarDescription: string;
+    familiarImage?: string;
   };
 };
