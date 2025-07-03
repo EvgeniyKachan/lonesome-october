@@ -7,21 +7,19 @@ import { useAuth } from "./useAuth";
 import type { AddCharacterFormData } from "../screens/AddCharacter/form/type";
 import type { CharacterResponse } from "../components/characters/types";
 
-export function useAddCharacter(): UseMutationResult<
-  CharacterResponse,
-  Error,
-  AddCharacterFormData
-> {
+export function useEditCharacter(
+  characterId: string
+): UseMutationResult<CharacterResponse, Error, AddCharacterFormData> {
   const { userId, token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["characters", "add"],
+    mutationKey: ["character", characterId],
     mutationFn: async (data) => {
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/characters`,
+        `${import.meta.env.VITE_BACKEND_URL}/characters/${characterId}`,
         {
-          method: "POST",
+          method: "PATCH",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -37,7 +35,7 @@ export function useAddCharacter(): UseMutationResult<
       return res.json() as Promise<CharacterResponse>;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["characters", "list"] });
+      queryClient.invalidateQueries({ queryKey: ["character", characterId] });
     },
   });
 }

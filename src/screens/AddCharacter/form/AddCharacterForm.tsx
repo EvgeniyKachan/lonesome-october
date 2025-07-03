@@ -1,31 +1,24 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import Input from "../../../components/shared/Input/Input";
 import Button from "../../../components/shared/Button/Button";
 import type { AddCharacterFormData } from "./type";
-
-const schema = yup.object({
-  characterName: yup.string().min(3).max(20).required(),
-  characterRole: yup.string().min(3).max(20).required(),
-  characterDescription: yup.string().min(10).max(500).required(),
-  familiar: yup.object({
-    familiarName: yup.string().min(3).max(20),
-    familiarSpecies: yup.string().min(3).max(20),
-    familiarDescription: yup.string().min(10).max(500),
-  }),
-});
+import { schema } from "./schema";
+import Textarea from "../../../components/shared/Textarea/Textarea";
+import type { Character } from "../../../components/characters/types";
 
 type AddCharacterFormProps = {
   onSubmit: (data: AddCharacterFormData) => void;
   isLoading: boolean;
   error: Error | null;
+  defaultData?: Character | null;
 };
 
 export default function AddCharacterForm({
   onSubmit,
   isLoading,
   error,
+  defaultData,
 }: AddCharacterFormProps) {
   const {
     register,
@@ -34,7 +27,7 @@ export default function AddCharacterForm({
   } = useForm<AddCharacterFormData>({
     resolver: yupResolver(schema),
   });
-  console.log("error", error);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -42,24 +35,28 @@ export default function AddCharacterForm({
         name="characterName"
         register={register}
         error={errors.characterName}
+        defaultValue={defaultData?.characterName}
       />
       <Input
         label="Character Role"
         name="characterRole"
         register={register}
         error={errors.characterRole}
+        defaultValue={defaultData?.characterRole}
       />
-      <Input
+      <Textarea
         label="Character Description"
         name="characterDescription"
         register={register}
         error={errors.characterDescription}
+        defaultValue={defaultData?.characterDescription}
       />
       <Input
         label="Familiar Name"
         name="familiar.familiarName"
         register={register}
         error={errors.familiar?.familiarName}
+        defaultValue={defaultData?.familiar?.familiarName}
       />
 
       <Input
@@ -67,12 +64,14 @@ export default function AddCharacterForm({
         name="familiar.familiarSpecies"
         register={register}
         error={errors.familiar?.familiarSpecies}
+        defaultValue={defaultData?.familiar?.familiarSpecies}
       />
-      <Input
+      <Textarea
         label="Familiar Description"
         name="familiar.familiarDescription"
         register={register}
         error={errors.familiar?.familiarDescription}
+        defaultValue={defaultData?.familiar?.familiarDescription}
       />
       <Button type="submit" disabled={isLoading}>
         {isLoading ? "Loading…" : "Add Character"}

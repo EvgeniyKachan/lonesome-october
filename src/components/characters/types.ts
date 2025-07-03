@@ -10,4 +10,9 @@ export type Character = {
     familiarDescription: string;
     familiarImage?: string;
   };
+  creator: string;
+};
+
+export type CharacterResponse = {
+  character: Character;
 };

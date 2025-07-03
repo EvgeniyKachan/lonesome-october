@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router";
 import Header from "./components/header/Header";
-import Character from "./screens/Character/Character";
+import CharacterDetailsPage from "./screens/CharacterDetails/CharacterDetailsPage.tsx";
 import AddCharacter from "./screens/AddCharacter/AddCharacter";
-import EditCharacter from "./components/characters/EditCharacter";
 import Authorization from "./screens/Authorization/Authorization.tsx";
 import Home from "./screens/Home/Home";
 import { PageLayout } from "./components/PageLayout/PageLayout";
@@ -17,9 +16,8 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="character">
-          <Route path=":characterId" element={<Character />} />
+          <Route path=":characterId" element={<CharacterDetailsPage />} />
           <Route path="add-character" element={<AddCharacter />} />
-          <Route path="edit-character" element={<EditCharacter />} />
         </Route>
       </Routes>
     );
@@ -27,6 +25,9 @@ function App() {
     routes = (
       <Routes>
         <Route index element={<Home />} />
+        <Route path="character">
+          <Route path=":characterId" element={<CharacterDetailsPage />} />
+        </Route>
         <Route path="login" element={<Authorization />} />
       </Routes>
     );
