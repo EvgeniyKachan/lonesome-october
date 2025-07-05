@@ -1,7 +1,7 @@
-import CharacterInformation from "../../components/characters/CharacterInformation";
+import CharacterInformation from "./CharacterInformation/CharacterInformation";
 import classes from "./Home.module.scss";
-import type { Character } from "../../components/characters/types";
-import { useCharacters } from "../../hooks/useCharacters";
+import type { Character } from "./CharacterInformation/types";
+import { useCharacters } from "../../hooks/character/useCharacters";
 
 export default function Home() {
   const { characters, isLoading, error } = useCharacters();

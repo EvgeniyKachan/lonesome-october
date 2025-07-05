@@ -57,8 +57,12 @@
       border-bottom-color: #ffe;
     }
   }
+  .description {
+    max-width: 300px;
+    overflow-wrap: break-word;
+  }
 }
 
-.character_information {
-  flex-direction: column;
+.button_wrapper {
+  display: flex;
 }

@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router";
-import Header from "./components/header/Header";
+import Header from "./components/Header/Header.tsx";
 import CharacterDetailsPage from "./screens/CharacterDetails/CharacterDetailsPage.tsx";
 import AddCharacter from "./screens/AddCharacter/AddCharacter";
 import Authorization from "./screens/Authorization/Authorization.tsx";
 import Home from "./screens/Home/Home";
 import { PageLayout } from "./components/PageLayout/PageLayout";
-import { useAuth } from "./hooks/useAuth.ts";
+import { useAuth } from "./hooks/auth/useAuth.ts";
 
 function App() {
   const { isLoggedIn } = useAuth();

@@ -12,7 +12,7 @@ import {
   type LoginFormProps,
   type LoginResponse,
   type RegisterFormProps,
-} from "../api/auth";
+} from "../../api/auth";
 
 export interface AuthContextType {
   isLoggedIn: boolean;

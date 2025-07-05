@@ -1,6 +1,6 @@
 import Card from "../../../components/shared/Card/Card";
-import { useCharacterDetails } from "../../../hooks/useCharacterDetails";
-import { useEditCharacter } from "../../../hooks/useEditCharacter";
+import { useCharacterDetails } from "../../../hooks/character/useCharacterDetails";
+import { useEditCharacter } from "../../../hooks/character/useEditCharacter";
 import AddCharacterForm from "../../AddCharacter/form/AddCharacterForm";
 import type { AddCharacterFormData } from "../../AddCharacter/form/type";
 

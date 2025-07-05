@@ -5,7 +5,7 @@ import classes from "./Authorization.module.scss";
 import { useState } from "react";
 import LoginForm from "./forms/LoginForm";
 import Button from "../../components/shared/Button/Button";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/auth/useAuth";
 import { useNavigate } from "react-router";
 
 export default function Authorization() {

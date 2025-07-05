@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Character } from "../components/characters/types";
+import type { Character } from "../../screens/Home/CharacterInformation/types";
 
 export const useCharacterDetails = (characterId: string) => {
   const { isPending, error, data } = useQuery<Character>({

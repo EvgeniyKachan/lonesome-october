@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
 import Card from "../../components/shared/Card/Card";
-import { useAddCharacter } from "../../hooks/useAddCharacter";
+import { useAddCharacter } from "../../hooks/character/useAddCharacter";
 import AddCharacterForm from "./form/AddCharacterForm";
 import type { AddCharacterFormData } from "./form/type";
-import type { CharacterResponse } from "../../components/characters/types";
+import type { CharacterResponse } from "../Home/CharacterInformation/types";
 
 export default function AddCharacter() {
   const { mutate, isPending, error } = useAddCharacter();

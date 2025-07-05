@@ -5,7 +5,7 @@ import Button from "../../../components/shared/Button/Button";
 import type { AddCharacterFormData } from "./type";
 import { schema } from "./schema";
 import Textarea from "../../../components/shared/Textarea/Textarea";
-import type { Character } from "../../../components/characters/types";
+import type { Character } from "../../Home/CharacterInformation/types";
 
 type AddCharacterFormProps = {
   onSubmit: (data: AddCharacterFormData) => void;
@@ -27,7 +27,7 @@ export default function AddCharacterForm({
   } = useForm<AddCharacterFormData>({
     resolver: yupResolver(schema),
   });
-
+  console.log(defaultData);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -74,7 +74,7 @@ export default function AddCharacterForm({
         defaultValue={defaultData?.familiar?.familiarDescription}
       />
       <Button type="submit" disabled={isLoading}>
-        {isLoading ? "Loading…" : "Add Character"}
+        {defaultData ? "Edit" : "Add Character"}
       </Button>
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </form>

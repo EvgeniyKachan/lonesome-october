@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import classes from "./CharacterInformation.module.scss";
 import type { CharacterResponse } from "./types";
-import Card from "../shared/Card/Card";
-import Button from "../shared/Button/Button";
+import Card from "../../../components/shared/Card/Card";
+import Button from "../../../components/shared/Button/Button";
 
 export default function CharacterInformation({ character }: CharacterResponse) {
   return (

@@ -3,16 +3,16 @@ import {
   useQueryClient,
   type UseMutationResult,
 } from "@tanstack/react-query";
-import { useAuth } from "./useAuth";
-import type { AddCharacterFormData } from "../screens/AddCharacter/form/type";
-import type { CharacterResponse } from "../components/characters/types";
+import { useAuth } from "../auth/useAuth";
+import type { AddCharacterFormData } from "../../screens/AddCharacter/form/type";
+import type { CharacterResponse } from "../../screens/Home/CharacterInformation/types";
 
 export function useAddCharacter(): UseMutationResult<
   CharacterResponse,
   Error,
   AddCharacterFormData
 > {
-  const { userId, token } = useAuth();
+  const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -26,7 +26,7 @@ export function useAddCharacter(): UseMutationResult<
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ ...data, creator: userId }),
+          body: JSON.stringify(data),
         }
       );
 

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import classes from "./Header.module.scss";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/auth/useAuth";
 import Button from "../shared/Button/Button";
 
 export default function Header() {

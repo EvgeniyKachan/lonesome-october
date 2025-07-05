@@ -1,12 +1,9 @@
-import { useParams } from "react-router";
-import { useCharacterDetails } from "../../hooks/useCharacterDetails";
-import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
+import { useParams } from "react-router";
 import CharacterDetailsBlock from "./CharacterDetailsBlock/CharacterDetailsBlock";
 import CharacterEditBlock from "./CharacterEdit/CharacterEditBlock";
 
 export default function CharacterDetailsPage() {
-  const { userId } = useAuth();
   const [isEdit, setIsEdit] = useState(false);
   const { characterId } = useParams();
 
@@ -14,18 +11,12 @@ export default function CharacterDetailsPage() {
     return <p>Error: Character ID not found.</p>;
   }
 
-  const { character, isPending, error } = useCharacterDetails(characterId);
-  const isCreator = userId === character?.creator;
-
-  return isEdit && isCreator ? (
+  return isEdit ? (
     <CharacterEditBlock characterId={characterId} setIsEdit={setIsEdit} />
   ) : (
     <CharacterDetailsBlock
-      isCreator={isCreator}
-      isPending={isPending}
       isEdit={isEdit}
-      error={error}
-      character={character}
+      characterId={characterId}
       setIsEdit={setIsEdit}
     />
   );

@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router";
 import App from "./App.tsx";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AuthProvider } from "./hooks/useAuth.ts";
+import { AuthProvider } from "./hooks/auth/useAuth.ts";
 
 const queryClient = new QueryClient();
 
