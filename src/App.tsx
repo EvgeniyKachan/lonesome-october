@@ -4,10 +4,10 @@ import CharacterDetailsPage from "./screens/CharacterDetails/CharacterDetailsPag
 import AddCharacter from "./screens/AddCharacter/AddCharacter";
 import Authorization from "./screens/Authorization/Authorization.tsx";
 import Home from "./screens/Home/Home";
-import { PageLayout } from "./components/PageLayout/PageLayout";
+import PageLayout from "./components/PageLayout/PageLayout";
 import { useAuth } from "./hooks/auth/useAuth.ts";
 
-function App() {
+const App = () => {
   const { isLoggedIn } = useAuth();
   let routes;
 
@@ -39,6 +39,6 @@ function App() {
       {routes}
     </PageLayout>
   );
-}
+};
 
 export default App;

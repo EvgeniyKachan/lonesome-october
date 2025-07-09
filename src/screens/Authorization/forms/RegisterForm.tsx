@@ -5,6 +5,7 @@ import * as yup from "yup";
 import classes from "../Authorization.module.scss";
 import Input from "../../../components/shared/Input/Input";
 import Button from "../../../components/shared/Button/Button";
+import LoadingSpinner from "../../../components/shared/LoadingSpinner/LoadingSpinner";
 
 const schema = yup
   .object({
@@ -26,11 +27,7 @@ type RegisterFormProps = {
   error: Error | null;
 };
 
-export default function RegisterForm({
-  onSubmit,
-  isLoading,
-  error,
-}: RegisterFormProps) {
+const RegisterForm = ({ onSubmit, isLoading, error }: RegisterFormProps) => {
   const {
     register,
     handleSubmit,
@@ -73,6 +70,9 @@ export default function RegisterForm({
         Sign up
       </Button>
       {error && <p style={{ color: "red" }}>{error.message}</p>}
+      {isLoading && <LoadingSpinner />}
     </form>
   );
-}
+};
+
+export default RegisterForm;

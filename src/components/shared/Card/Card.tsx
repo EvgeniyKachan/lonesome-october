@@ -5,10 +5,12 @@ type CardProps = {
   className?: string;
 };
 
-export default function Card({ children, className }: CardProps) {
+const Card = ({ children, className }: CardProps) => {
   return (
     <div className={`${classes.card_wrapper} ${className ? className : ""}`}>
       {children}
     </div>
   );
-}
+};
+
+export default Card;

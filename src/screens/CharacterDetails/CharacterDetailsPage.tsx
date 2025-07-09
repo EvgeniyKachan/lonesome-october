@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import CharacterDetailsBlock from "./CharacterDetailsBlock/CharacterDetailsBlock";
 import CharacterEditBlock from "./CharacterEdit/CharacterEditBlock";
 
-export default function CharacterDetailsPage() {
+const CharacterDetailsPage = () => {
   const [isEdit, setIsEdit] = useState(false);
   const { characterId } = useParams();
 
@@ -20,4 +20,6 @@ export default function CharacterDetailsPage() {
       setIsEdit={setIsEdit}
     />
   );
-}
+};
+
+export default CharacterDetailsPage;

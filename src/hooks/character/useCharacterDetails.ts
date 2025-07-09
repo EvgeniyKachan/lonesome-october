@@ -14,6 +14,6 @@ export const useCharacterDetails = (characterId: string) => {
       return (await response.json()).character as Character;
     },
   });
-
+  console.log("useCharacterDetails", isPending);
   return { isPending, error, character: data || null };
 };

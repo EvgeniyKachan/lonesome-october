@@ -14,12 +14,12 @@ type AddCharacterFormProps = {
   defaultData?: Character | null;
 };
 
-export default function AddCharacterForm({
+const AddCharacterForm = ({
   onSubmit,
   isLoading,
   error,
   defaultData,
-}: AddCharacterFormProps) {
+}: AddCharacterFormProps) => {
   const {
     register,
     handleSubmit,
@@ -27,7 +27,7 @@ export default function AddCharacterForm({
   } = useForm<AddCharacterFormData>({
     resolver: yupResolver(schema),
   });
-  console.log(defaultData);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -79,4 +79,6 @@ export default function AddCharacterForm({
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </form>
   );
-}
+};
+
+export default AddCharacterForm;

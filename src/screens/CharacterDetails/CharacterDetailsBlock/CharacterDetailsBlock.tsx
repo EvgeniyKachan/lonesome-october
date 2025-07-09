@@ -6,6 +6,7 @@ import Card from "../../../components/shared/Card/Card";
 import Button from "../../../components/shared/Button/Button";
 import { useCharacterDetails } from "../../../hooks/character/useCharacterDetails";
 import { useDeleteCharacter } from "../../../hooks/character/useDeleteCharacter";
+import LoadingSpinner from "../../../components/shared/LoadingSpinner/LoadingSpinner";
 
 type CharacterDetailsBlockProps = {
   characterId: string;
@@ -13,11 +14,11 @@ type CharacterDetailsBlockProps = {
   setIsEdit: (isEdit: boolean) => void;
 };
 
-export default function CharacterDetailsBlock({
+const CharacterDetailsBlock = ({
   characterId,
   setIsEdit,
   isEdit,
-}: CharacterDetailsBlockProps) {
+}: CharacterDetailsBlockProps) => {
   const { userId } = useAuth();
   const navigate = useNavigate();
   const {
@@ -40,10 +41,10 @@ export default function CharacterDetailsBlock({
       },
     });
   };
-
+  console.log("isPendingDetails", isPendingDetails);
   return (
     <Card>
-      {isPendingDetails && <p>Loading...</p>}
+      {isPendingDetails && <LoadingSpinner />}
       {error && <p>Error: {error.message}</p>}
 
       {character && (
@@ -61,4 +62,6 @@ export default function CharacterDetailsBlock({
       )}
     </Card>
   );
-}
+};
+
+export default CharacterDetailsBlock;

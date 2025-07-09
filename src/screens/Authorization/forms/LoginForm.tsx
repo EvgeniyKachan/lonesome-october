@@ -4,6 +4,8 @@ import * as yup from "yup";
 import Input from "../../../components/shared/Input/Input";
 import classes from "../Authorization.module.scss";
 import Button from "../../../components/shared/Button/Button";
+import LoadingSpinner from "../../../components/shared/LoadingSpinner/LoadingSpinner";
+import ErrorModal from "../../../components/shared/ErrorModal/ErrorModal";
 
 const schema = yup
   .object({
@@ -20,11 +22,7 @@ type LoginFormProps = {
   error: Error | null;
 };
 
-export default function LoginForm({
-  onSubmit,
-  isLoading,
-  error,
-}: LoginFormProps) {
+const LoginForm = ({ onSubmit, isLoading, error }: LoginFormProps) => {
   const {
     register,
     handleSubmit,
@@ -58,7 +56,10 @@ export default function LoginForm({
       <Button type="submit" disabled={isLoading}>
         {isLoading ? "Loading…" : "Log In"}
       </Button>
-      {error && <p style={{ color: "red" }}>{error.message}</p>}
+      {error && <ErrorModal error={error.message} />}
+      {isLoading && <LoadingSpinner />}
     </form>
   );
-}
+};
+
+export default LoginForm;

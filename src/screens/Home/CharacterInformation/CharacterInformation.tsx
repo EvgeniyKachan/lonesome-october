@@ -4,7 +4,7 @@ import type { CharacterResponse } from "./types";
 import Card from "../../../components/shared/Card/Card";
 import Button from "../../../components/shared/Button/Button";
 
-export default function CharacterInformation({ character }: CharacterResponse) {
+const CharacterInformation = ({ character }: CharacterResponse) => {
   return (
     <Card className={classes.character_information}>
       <div className={classes.information_card_wrapper}>
@@ -49,4 +49,6 @@ export default function CharacterInformation({ character }: CharacterResponse) {
       </Link>
     </Card>
   );
-}
+};
+
+export default CharacterInformation;

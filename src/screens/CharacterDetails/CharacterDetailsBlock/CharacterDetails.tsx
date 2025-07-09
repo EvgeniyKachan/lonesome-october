@@ -1,7 +1,7 @@
 import type { CharacterResponse } from "../../Home/CharacterInformation/types";
 import classes from "./CharacterDetails.module.scss";
 
-export default function CharacterDetails({ character }: CharacterResponse) {
+const CharacterDetails = ({ character }: CharacterResponse) => {
   return (
     <div className={classes.information_card_wrapper}>
       <div className={classes.information_card}>
@@ -45,4 +45,6 @@ export default function CharacterDetails({ character }: CharacterResponse) {
       )}
     </div>
   );
-}
+};
+
+export default CharacterDetails;

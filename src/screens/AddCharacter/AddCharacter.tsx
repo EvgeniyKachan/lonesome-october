@@ -5,7 +5,7 @@ import AddCharacterForm from "./form/AddCharacterForm";
 import type { AddCharacterFormData } from "./form/type";
 import type { CharacterResponse } from "../Home/CharacterInformation/types";
 
-export default function AddCharacter() {
+const AddCharacter = () => {
   const { mutate, isPending, error } = useAddCharacter();
   const navigate = useNavigate();
 
@@ -29,4 +29,6 @@ export default function AddCharacter() {
       />
     </Card>
   );
-}
+};
+
+export default AddCharacter;

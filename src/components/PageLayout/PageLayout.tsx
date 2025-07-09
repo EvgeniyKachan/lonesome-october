@@ -5,6 +5,8 @@ type PageLayoutProps = {
   children: ReactNode;
 };
 
-export function PageLayout({ children }: PageLayoutProps) {
+const PageLayout = ({ children }: PageLayoutProps) => {
   return <div className={classes.layout}>{children}</div>;
-}
+};
+
+export default PageLayout;

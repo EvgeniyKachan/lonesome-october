@@ -9,18 +9,10 @@ type CharacterEditBlock = {
   setIsEdit: (isEdit: boolean) => void;
 };
 
-export default function CharacterEditBlock({
-  characterId,
-  setIsEdit,
-}: CharacterEditBlock) {
-  const {
-    mutate,
-    isPending: isPendingEdit,
-    error: errorEdit,
-  } = useEditCharacter(characterId);
+const CharacterEditBlock = ({ characterId, setIsEdit }: CharacterEditBlock) => {
+  const { mutate, error: errorEdit } = useEditCharacter(characterId);
 
   const { character, isPending, error } = useCharacterDetails(characterId);
-
   const onSubmit = (data: AddCharacterFormData) => {
     mutate(data, {
       onSuccess: () => {
@@ -34,7 +26,6 @@ export default function CharacterEditBlock({
 
   return (
     <Card>
-      {isPendingEdit && <p>Loading...</p>}
       {errorEdit && <p>Error: {errorEdit.message}</p>}
       <AddCharacterForm
         onSubmit={onSubmit}
@@ -44,4 +35,6 @@ export default function CharacterEditBlock({
       />
     </Card>
   );
-}
+};
+
+export default CharacterEditBlock;

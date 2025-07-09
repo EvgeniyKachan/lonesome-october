@@ -8,7 +8,7 @@ import Button from "../../components/shared/Button/Button";
 import { useAuth } from "../../hooks/auth/useAuth";
 import { useNavigate } from "react-router";
 
-export default function Authorization() {
+const Authorization = () => {
   const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
   const {
     login,
@@ -59,4 +59,6 @@ export default function Authorization() {
       </Card>
     </div>
   );
-}
+};
+
+export default Authorization;

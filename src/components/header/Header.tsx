@@ -3,7 +3,7 @@ import classes from "./Header.module.scss";
 import { useAuth } from "../../hooks/auth/useAuth";
 import Button from "../shared/Button/Button";
 
-export default function Header() {
+const Header = () => {
   const { isLoggedIn, logout } = useAuth();
   return (
     <header className={classes.header}>
@@ -44,4 +44,6 @@ export default function Header() {
       </nav>
     </header>
   );
-}
+};
+
+export default Header;
