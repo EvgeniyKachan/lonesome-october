@@ -3,11 +3,12 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 
 type ErrorModalProps = {
-  error: string | null;
+  error?: string | null;
 };
 
 const ErrorModal = ({ error }: ErrorModalProps) => {
   const [isError, setIsError] = useState(error);
+  console.log("isError", isError);
   return (
     <>
       {isError && (

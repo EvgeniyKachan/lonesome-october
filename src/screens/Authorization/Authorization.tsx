@@ -2,7 +2,7 @@ import Card from "../../components/shared/Card/Card";
 import RegisterForm from "./forms/RegisterForm";
 
 import classes from "./Authorization.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoginForm from "./forms/LoginForm";
 import Button from "../../components/shared/Button/Button";
 import { useAuth } from "../../hooks/auth/useAuth";
@@ -17,6 +17,8 @@ const Authorization = () => {
     isRegisterLoading,
     loginError,
     registerError,
+    resetLoginError,
+    resetRegisterError,
   } = useAuth();
   const navigate = useNavigate();
 
@@ -34,6 +36,17 @@ const Authorization = () => {
     navigate("/", { replace: true });
   };
 
+  const handleToggleForm = () => {
+    setIsLoginForm((prev) => !prev);
+    resetLoginError();
+    resetRegisterError();
+  };
+
+  useEffect(() => {
+    if (isLoginForm) resetLoginError();
+    else resetRegisterError();
+  }, []);
+
   return (
     <div className={classes.login_wrapper}>
       <Card className={classes.login_card}>
@@ -50,10 +63,7 @@ const Authorization = () => {
             error={registerError}
           />
         )}
-        <Button
-          className={classes.toggle_button}
-          onClick={() => setIsLoginForm((prev) => !prev)}
-        >
+        <Button className={classes.toggle_button} onClick={handleToggleForm}>
           {isLoginForm ? "Sign up" : "Login"}
         </Button>
       </Card>

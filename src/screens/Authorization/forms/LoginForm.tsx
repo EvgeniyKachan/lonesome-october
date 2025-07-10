@@ -40,9 +40,8 @@ const LoginForm = ({ onSubmit, isLoading, error }: LoginFormProps) => {
         autocomplete="email"
         className={classes.input}
         placeholder="Email"
+        error={errors.email}
       />
-      <p>{errors.email?.message}</p>
-
       <Input
         label="You Password"
         name="password"
@@ -50,10 +49,13 @@ const LoginForm = ({ onSubmit, isLoading, error }: LoginFormProps) => {
         register={register}
         className={classes.input}
         placeholder="Password"
+        error={errors.password}
       />
-      <p>{errors.password?.message}</p>
-
-      <Button type="submit" disabled={isLoading}>
+      <Button
+        type="submit"
+        disabled={isLoading}
+        className={classes.login_button}
+      >
         {isLoading ? "Loading…" : "Log In"}
       </Button>
       {error && <ErrorModal error={error.message} />}

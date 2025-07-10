@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "GreatVictorian-Standard";
+  src: url("/src/assets/fonts/greatvictorian/GreatVictorian-Standard.otf")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -14,15 +22,21 @@
   top: 22vh;
   left: 10%;
   width: 80%;
+  color: red;
+  font-weight: bold;
+  font-size: 30px;
   background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  font-family: "GreatVictorian-Standard", serif;
 
   .modal__header {
-    width: 100%;
+    width: auto;
+    color: black;
+    font-size: 38px;
+    border-radius: 8px 8px 0 0;
+    background: #ff7518;
     padding: 1rem 0.5rem;
-    background: #2a006e;
-    color: white;
   }
 
   .modal__header h2 {
@@ -34,6 +48,8 @@
 
   .modal__footer {
     padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 

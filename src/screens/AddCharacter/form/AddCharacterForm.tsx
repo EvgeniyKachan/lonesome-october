@@ -6,6 +6,7 @@ import type { AddCharacterFormData } from "./type";
 import { schema } from "./schema";
 import Textarea from "../../../components/shared/Textarea/Textarea";
 import type { Character } from "../../Home/CharacterInformation/types";
+import ErrorModal from "../../../components/shared/ErrorModal/ErrorModal";
 
 type AddCharacterFormProps = {
   onSubmit: (data: AddCharacterFormData) => void;
@@ -76,7 +77,7 @@ const AddCharacterForm = ({
       <Button type="submit" disabled={isLoading}>
         {defaultData ? "Edit" : "Add Character"}
       </Button>
-      {error && <p style={{ color: "red" }}>{error.message}</p>}
+      {error && <ErrorModal error={error.message} />}
     </form>
   );
 };

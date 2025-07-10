@@ -1,8 +1,9 @@
 import {
   createContext,
   createElement,
+  useCallback,
   useContext,
-  useState,
+  useMemo,
   type ReactNode,
 } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -13,6 +14,8 @@ import {
   type LoginResponse,
   type RegisterFormProps,
 } from "../../api/auth";
+import useLocalStorageState from "./useLocalStorageState";
+import { useNavigate } from "react-router";
 
 export interface AuthContextType {
   isLoggedIn: boolean;
@@ -27,88 +30,103 @@ export interface AuthContextType {
 
   isRegisterLoading: boolean;
   registerError: Error | null;
+
+  resetLoginError: () => void;
+  resetRegisterError: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const qc = useQueryClient();
-  const [token, setToken] = useState<string | null>(() =>
-    localStorage.getItem("token")
-  );
-  const [userId, setUserId] = useState<string | null>(() =>
-    localStorage.getItem("userId")
-  );
+  const [token, setToken] = useLocalStorageState("token", null);
+  const [userId, setUserId] = useLocalStorageState("userId", null);
 
-  const {
-    mutateAsync: loginMutate,
-    isPending: isLoginLoading,
-    error: loginError,
-  } = useMutation<LoginResponse, Error, LoginFormProps>({
+  const qc = useQueryClient();
+  const navigate = useNavigate();
+
+  const loginMutation = useMutation<LoginResponse, Error, LoginFormProps>({
     mutationFn: loginApi,
     onSuccess(data) {
       setToken(data.token);
       setUserId(data.user.id);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.user.id);
       qc.setQueryData(["user"], data.user);
     },
   });
 
-  const {
-    mutateAsync: registerMutate,
-    isPending: isRegisterLoading,
-    error: registerError,
-  } = useMutation<LoginResponse, Error, RegisterFormProps>({
-    mutationFn: registerApi,
-    onSuccess(data) {
-      setToken(data.token);
-      setUserId(data.user.id);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.user.id);
-      qc.setQueryData(["user"], data.user);
-    },
-  });
+  const registerMutation = useMutation<LoginResponse, Error, RegisterFormProps>(
+    {
+      mutationFn: registerApi,
+      onSuccess(data) {
+        setToken(data.token);
+        setUserId(data.user.id);
+        qc.setQueryData(["user"], data.user);
+      },
+    }
+  );
 
-  async function login(creds: LoginFormProps) {
-    await loginMutate(creds);
-  }
-
-  async function register(creds: RegisterFormProps) {
-    await registerMutate(creds);
-  }
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
+  const logout = useCallback(() => {
     setToken(null);
     setUserId(null);
-  };
+    navigate("/", { replace: true });
+  }, [setToken, setUserId]);
 
-  return createElement(
-    AuthContext.Provider,
-    {
-      value: {
-        isLoggedIn: Boolean(token),
-        userId,
-        token,
-        login,
-        register,
-        logout,
-        isLoginLoading,
-        loginError: loginError as Error | null,
-        isRegisterLoading,
-        registerError: registerError as Error | null,
-      },
+  const login = useCallback(
+    async (creds: LoginFormProps) => {
+      await loginMutation.mutateAsync(creds);
     },
-    children
+    [loginMutation]
   );
+
+  const register = useCallback(
+    async (creds: RegisterFormProps) => {
+      await registerMutation.mutateAsync(creds);
+    },
+    [registerMutation]
+  );
+
+  const resetLoginError = useCallback(() => {
+    loginMutation.reset();
+  }, [loginMutation]);
+
+  const resetRegisterError = useCallback(() => {
+    registerMutation.reset();
+  }, [registerMutation]);
+
+  const ctxValue = useMemo(
+    () => ({
+      isLoggedIn: Boolean(token),
+      userId,
+      token,
+      login,
+      register,
+      logout,
+      isLoginLoading: loginMutation.isPending,
+      loginError: loginMutation.error,
+      isRegisterLoading: registerMutation.isPending,
+      registerError: registerMutation.error,
+      resetLoginError,
+      resetRegisterError,
+    }),
+    [
+      token,
+      userId,
+      login,
+      register,
+      logout,
+      loginMutation,
+      registerMutation,
+      resetLoginError,
+      resetRegisterError,
+    ]
+  );
+
+  return createElement(AuthContext.Provider, { value: ctxValue }, children);
 };
 
 export const useAuth = (): AuthContextType => {
-  const ctx = useContext(AuthContext);
-  if (!ctx) {
-    throw new Error("Error in auth");
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
   }
-  return ctx;
+  return context;
 };

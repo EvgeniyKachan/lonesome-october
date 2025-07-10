@@ -6,6 +6,7 @@ import Authorization from "./screens/Authorization/Authorization.tsx";
 import Home from "./screens/Home/Home";
 import PageLayout from "./components/PageLayout/PageLayout";
 import { useAuth } from "./hooks/auth/useAuth.ts";
+import ProtectedRoute from "./components/Header/ProtectedRoute.tsx";
 
 const App = () => {
   const { isLoggedIn } = useAuth();
@@ -17,7 +18,14 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="character">
           <Route path=":characterId" element={<CharacterDetailsPage />} />
-          <Route path="add-character" element={<AddCharacter />} />
+          <Route
+            path="add-character"
+            element={
+              <ProtectedRoute>
+                <AddCharacter />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     );
@@ -29,6 +37,16 @@ const App = () => {
           <Route path=":characterId" element={<CharacterDetailsPage />} />
         </Route>
         <Route path="login" element={<Authorization />} />
+        <Route path="character">
+          <Route
+            path="add-character"
+            element={
+              <ProtectedRoute>
+                <AddCharacter />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
       </Routes>
     );
   }

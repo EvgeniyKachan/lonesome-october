@@ -6,6 +6,7 @@ import classes from "../Authorization.module.scss";
 import Input from "../../../components/shared/Input/Input";
 import Button from "../../../components/shared/Button/Button";
 import LoadingSpinner from "../../../components/shared/LoadingSpinner/LoadingSpinner";
+import ErrorModal from "../../../components/shared/ErrorModal/ErrorModal";
 
 const schema = yup
   .object({
@@ -44,8 +45,9 @@ const RegisterForm = ({ onSubmit, isLoading, error }: RegisterFormProps) => {
         register={register}
         className={classes.input}
         placeholder="Username"
+        error={errors.username}
       />
-      <p>{errors.username?.message}</p>
+      {/* <p>{errors.username?.message}</p> */}
       <Input
         label="You Email"
         name="email"
@@ -53,8 +55,9 @@ const RegisterForm = ({ onSubmit, isLoading, error }: RegisterFormProps) => {
         autocomplete="email"
         className={classes.input}
         placeholder="Email"
+        error={errors.email}
       />
-      <p>{errors.email?.message}</p>
+      {/* <p>{errors.email?.message}</p> */}
 
       <Input
         label="You Password"
@@ -63,13 +66,18 @@ const RegisterForm = ({ onSubmit, isLoading, error }: RegisterFormProps) => {
         type="password"
         className={classes.input}
         placeholder="Password"
+        error={errors.password}
       />
-      <p>{errors.password?.message}</p>
+      {/* <p>{errors.password?.message}</p> */}
 
-      <Button type="submit" disabled={isLoading}>
+      <Button
+        type="submit"
+        disabled={isLoading}
+        className={classes.signup_button}
+      >
         Sign up
       </Button>
-      {error && <p style={{ color: "red" }}>{error.message}</p>}
+      {error && <ErrorModal error={error.message} />}
       {isLoading && <LoadingSpinner />}
     </form>
   );
